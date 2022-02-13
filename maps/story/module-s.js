@@ -20,8 +20,10 @@ const script = src => {
 
 const init = () => {
  style("https://unvt.github.io/tell/style.css") //used absolute path so that html can work from file system
- style("https://unvt.github.io/tell/maplibre-gl.css") //used absolute path so that html can work from file system
- script("https://unvt.github.io/tell/maplibre-gl.js") //used absolute path so that html can work from file system
+ style("https://ubukawa.github.io/story-comp/maps/maplibre-gl/maplibre-gl.css") //used absolute path so that html can work from file system, maplibre version 2
+ style("https://ubukawa.github.io/story-comp/maps/maplibre-gl-compare/maplibre-gl-compare.css") // added
+ script("https://ubukawa.github.io/story-comp/maps/maplibre-gl/maplibre-gl.js") //used absolute path so that html can work from file system, maplibre version 2
+ script("https://ubukawa.github.io/story-comp/maps/maplibre-gl-compare/maplibre-gl-compare.js") // added
  script("https://unvt.github.io/tell/intersection-observer.js") //used absolute path so that html can work from file system
  script("https://unvt.github.io/tell/scrollama.js") //used absolute path so that html can work from file system
 /*
@@ -40,12 +42,19 @@ const init = () => {
   }
 */
 
-  for(let id of ['map', 'story']) {
+//  for(let id of ['map', 'story']) {
+  for(let id of ['comparison-container', 'story']) { // changed map to comparison-container
     const el = document.createElement('div')
     el.id = id
     document.body.appendChild(el)
   }
 }
+// Added on 2022-02-13 (to make sub div)- from here
+var before = document.createElement('div')
+var after = document.createElement('div')
+comparison-container.appendChild(before)
+comparison-container.appendChild(after)
+// Added on 2022-02-13 (to make sub div)- until
 init()
 
 let mapgl
@@ -72,13 +81,48 @@ const zoom = (config, i) => {
 }
 
 const tell = () => {
-  map = new mapgl.Map({
-    container: 'map',
-    style: config.style,
-    center: center(config, 0),
-    zoom: zoom(config, 0),
-    interactive: false
+
+/////////////////////////////
+// Edit 2022-02-13 (from here)
+/////////////////////////////
+//  map = new mapgl.Map({
+//    container: 'map',
+//    style: config.style,
+//    center: center(config, 0),
+//    zoom: zoom(config, 0),
+//    interactive: false
+//  })
+
+  var beforeMap = new mapgl.Map({
+    container: 'before', 
+    hash: true, 
+    style: 'https://ubukawa.github.io/sentinel2-Beijin20161229/maps/style.json', // style file path
+    center: [116.3451217, 40.0132106], // center [lng, lat]
+    zoom: 7, // zoom level at loading
+    maxZoom: 0, // min zoom
+    maxZoom: 16 // max zoom
   })
+  var afterMap = new mapgl.Map({
+    container: 'after', 
+    hash: true, 
+    style: 'https://ubukawa.github.io/sentinel2-Beijin20220102/maps/style.json', // style file path
+    center: [116.3451217, 40.0132106], // center [lng, lat]
+    zoom: 7, // zoom level at loading
+    maxZoom: 0, // min zoom
+    maxZoom: 16 // max zoom
+  })
+
+  var container = "#comparison-container";
+
+
+  var map = new maplibregl.Compare(beforeMap, afterMap, container, {
+    // Set this to enable comparing two maps by mouse movement:
+    // m ousemove: true
+  });
+////////////////////////////////////
+// Edit 2022-02-13 (until here)  ///
+////////////////////////////////////
+
   let story = document.getElementById('story')
   let features = document.createElement('div')
   features.setAttribute('id', 'features')

@@ -1,83 +1,40 @@
-﻿<html>
+﻿<!doctype html>
+<html lang="ja">
 <head>
-<meta charset='utf-8' />
-<title>Comparison Map(2016-12-29 and 2022-01-02)</title>
-<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-<script src='https://ubukawa.github.io/story-comp/maps/maplibre-gl/maplibre-gl.js'></script>
-<link href='https://ubukawa.github.io/story-comp/maps/maplibre-gl/maplibre-gl.css' rel='stylesheet' />
-
-<style>
-body { margin:0; padding:0; }
-#map {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-}
-</style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<title></title>
+<script type="module" src="https://ubukawa.github.io/story-comp/maps/story/module-s.js"></script>
 </head>
 <body>
- <style>
-      body {
-        overflow: hidden;
-      }
-
-      body * {
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      .map {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 100%;
-      }
- </style>
- <script src="maplibre-gl-compare/maplibre-gl-compare.js"></script>
- <link rel="stylesheet" href="maplibre-gl-compare/maplibre-gl-compare.css" type="text/css" />
- <div id="comparison-container">
-  <div id="before" class="map"></div>
-  <div id="after" class="map"></div>
- </div>
- <script>
-  var beforeMap = new maplibregl.Map({
-    container: 'before', 
-    hash: true, 
-    style: 'https://ubukawa.github.io/sentinel2-Beijin20161229/maps/style.json', // style file path
-    center: [116.3451217, 40.0132106], // center [lng, lat]
-    zoom: 7, // zoom level at loading
-    maxZoom: 0, // min zoom
-    maxZoom: 16 // max zoom
-  });
-
-  var afterMap = new maplibregl.Map({
-    container: 'after', 
-    hash: true, 
-    style: 'https://ubukawa.github.io/sentinel2-Beijin20220102/maps/style.json', // style file path
-    center: [116.3451217, 40.0132106], // center [lng, lat]
-    zoom: 7, // zoom level at loading
-    maxZoom: 0, // min zoom
-    maxZoom: 16 // max zoom
-  });
-
-  var container = "#comparison-container";
-
-  var map = new maplibregl.Compare(beforeMap, afterMap, container, {
-    // Set this to enable comparing two maps by mouse movement:
-    // m ousemove: true
-  });
-
-  //UI
-  map.addControl(new maplibregl.NavigationControl(), 'bottom-right');
-  map.addControl(new maplibregl.ScaleControl() );
-
-  //debug
-  map.showTileBoundaries = true;
-  map.showCollisionBoxes = false;
- </script>
+<script type="text/yaml">
+title: Test of comparing story
+subtitle: Using MapLibre-compalre and UNVT story telling
+byline: Base maps are Sentinel-2 Imagery in 2016 and 2022
+theme: light
+footer: Sentinel-2 from European Commission
+view:
+  loc01:
+    center: [116.5833, 40.0889]
+    zoom: 11
+  loc02:
+    center: [116.38487, 39.98641]
+    zoom: 13
+chapters: 
+  - id: chapter1
+    alignment: center
+    url: https://en.wikipedia.org/wiki/Beijing_Capital_International_Airport
+    title: Airport
+    description: >
+      You can see the airport.
+    location: loc01
+  - id: chapter2
+    alignment: left
+    url: https://en.wikipedia.org/wiki/Beijing_National_Stadium
+    title: Olympic studium
+    description: >
+      Studium
+    location: loc02
+</script>
 </body>
 </html>
