@@ -1,7 +1,7 @@
 ﻿<html>
 <head>
 <meta charset='utf-8' />
-<title>Display a map</title>
+<title>Comparison Map(2016-12-29 and 2022-01-02)</title>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 <script src='https://ubukawa.github.io/sentinel2-Beijin20220102/maps/maplibre-gl.js'></script>
 <link href='https://ubukawa.github.io/sentinel2-Beijin20220102/maps/maplibre-gl.css' rel='stylesheet' />
@@ -17,31 +17,67 @@ body { margin:0; padding:0; }
 </style>
 </head>
 <body>
- 
-<div id='map'></div>
+ <style>
+      body {
+        overflow: hidden;
+      }
 
-<script>
-var map = new maplibregl.Map({
-  container: 'map', 
-  hash: true, 
-  style: 'https://ubukawa.github.io/sentinel2-Beijin20220102/maps/style.json', // style file path
-  center: [116.3451217, 40.0132106], // center [lng, lat]
-  zoom: 7, // zoom level at loading
-  maxZoom: 0, // min zoom
-  maxZoom: 16 // max zoom
-});
+      body * {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
 
+      .map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+ </style>
+ <script src="maplibre-gl-compare/maplibre-gl-compare.js"></script>
+ <link rel="stylesheet" href="maplibre-gl-compare/maplibre-gl-compare.css" type="text/css" />
+ <div id="comparison-container">
+  <div id="before" class="map"></div>
+  <div id="after" class="map"></div>
+ </div>
+ <script>
+  var beforeMap = new maplibregl.Map({
+    container: 'before', 
+    hash: true, 
+    style: 'https://ubukawa.github.io/sentinel2-Beijin20161229/maps/style.json', // style file path
+    center: [116.3451217, 40.0132106], // center [lng, lat]
+    zoom: 7, // zoom level at loading
+    maxZoom: 0, // min zoom
+    maxZoom: 16 // max zoom
+  });
 
-//UI
-map.addControl(new maplibregl.NavigationControl(), 'bottom-right');
-map.addControl(new maplibregl.ScaleControl() );
+  var afterMap = new maplibregl.Map({
+    container: 'after', 
+    hash: true, 
+    style: 'https://ubukawa.github.io/sentinel2-Beijin20220102/maps/style.json', // style file path
+    center: [116.3451217, 40.0132106], // center [lng, lat]
+    zoom: 7, // zoom level at loading
+    maxZoom: 0, // min zoom
+    maxZoom: 16 // max zoom
+  });
 
+  var container = "#comparison-container";
 
-//debug
-map.showTileBoundaries = true;
-map.showCollisionBoxes = false;
+  var map = new maplibregl.Compare(beforeMap, afterMap, container, {
+    // Set this to enable comparing two maps by mouse movement:
+    // m ousemove: true
+  });
 
-</script>
- 
+  //UI
+  map.addControl(new maplibregl.NavigationControl(), 'bottom-right');
+  map.addControl(new maplibregl.ScaleControl() );
+
+  //debug
+  map.showTileBoundaries = true;
+  map.showCollisionBoxes = false;
+ </script>
 </body>
 </html>
