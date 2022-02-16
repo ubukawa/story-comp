@@ -1,0 +1,72 @@
+<!-- starting from story map html
+-->
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<title></title>
+<style>
+body { margin:0; padding:0; }
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+</style>
+</head>
+<body>
+ <style>
+      body {
+        overflow: hidden;
+      }
+
+      body * {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      .map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+ </style>
+<script type="module" src="https://ubukawa.github.io/story-comp/maps/story/module-s.js"></script>
+<script type="text/yaml">
+style: https://ubukawa.github.io/sentinel2-Beijin20220102/maps/style.json
+title: Test of comparing story
+subtitle: Using MapLibre-compalre and UNVT story telling
+byline: Base maps are Sentinel-2 Imagery in 2016 and 2022
+theme: light
+footer: Sentinel-2 from European Commission
+view:
+  loc01:
+    center: [116.5833, 40.0889]
+    zoom: 11
+  loc02:
+    center: [116.38487, 39.98641]
+    zoom: 13
+chapters: 
+  - id: chapter1
+    alignment: center
+    url: https://en.wikipedia.org/wiki/Beijing_Capital_International_Airport
+    title: Airport
+    description: >
+      You can see the airport.
+    location: loc01
+  - id: chapter2
+    alignment: left
+    url: https://en.wikipedia.org/wiki/Beijing_National_Stadium
+    title: Olympic studium
+    description: >
+      Studium
+    location: loc02
+</script>
+</body>
+</html>
