@@ -7,17 +7,6 @@
 <meta name="viewport" content="width=device-width" />
 <title></title>
 <style>
-body { margin:0; padding:0; } <!-- if overflow (hidden) is added, page does not scroll -->
-body * {-webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; user-select: none; }
-#map {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-}
-</style>
-<!-- backup-original
-<style>
 body { margin:0; padding:0; }
 #map {
   position: absolute;
@@ -26,10 +15,8 @@ body { margin:0; padding:0; }
   width: 100%;
 }
 </style>
--->
 </head>
 <body>
-<!-- if added, the map does not move
  <style>
       body {
         overflow: hidden;
@@ -50,7 +37,6 @@ body { margin:0; padding:0; }
         width: 100%;
       }
  </style>
--->
 <script type="module" src="https://ubukawa.github.io/story-comp/maps/story/module-s.js"></script>
 <script type="text/yaml">
 style: https://ubukawa.github.io/sentinel2-Beijin20220102/maps/style.json
