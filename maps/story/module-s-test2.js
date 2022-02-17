@@ -20,10 +20,13 @@ const script = src => {
 
 const init = () => {
  style("https://unvt.github.io/tell/style.css") //used absolute path so that html can work from file system
- style("https://unvt.github.io/tell/maplibre-gl.css") //used absolute path so that html can work from file system
- script("https://unvt.github.io/tell/maplibre-gl.js") //used absolute path so that html can work from file system
+// style("https://unvt.github.io/tell/maplibre-gl.css") //used absolute path so that html can work from file system
+ style("https://ubukawa.github.io/story-comp/maps/maplibre-gl/maplibre-gl.css") //used absolute path so that html can work from file system
+// script("https://unvt.github.io/tell/maplibre-gl.js") //used absolute path so that html can work from file system
+ script("https://ubukawa.github.io/story-comp/maps/maplibre-gl/maplibre-gl.js") //latest version
  script("https://unvt.github.io/tell/intersection-observer.js") //used absolute path so that html can work from file system
  script("https://unvt.github.io/tell/scrollama.js") //used absolute path so that html can work from file system
+
 /*
   for(let url of [
 'style.css',
