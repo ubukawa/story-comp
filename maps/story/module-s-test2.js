@@ -51,10 +51,13 @@ const init = () => {
 }
 
 // Added on 2022-02-13 (to make sub div)- from here
+var comparison-container = document.createElement('div')
 var before = document.createElement('div')
+before.className = "map"
 var after = document.createElement('div')
-map.appendChild(before)
-map.appendChild(after)
+after.className = "map"
+comparison-container.appendChild(before)
+comparison-container.appendChild(after)
 // Added on 2022-02-13 (to make sub div)- until
 
 init()
@@ -115,7 +118,7 @@ const tell = () => {
     maxZoom: 16 // max zoom
   })
 
-  var container = "#map";
+  var container = "#comparison-container"
 
 
   var map = new maplibregl.Compare(beforeMap, afterMap, container, {
