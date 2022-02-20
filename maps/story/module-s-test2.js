@@ -107,7 +107,8 @@ const tell = () => {
     zoom: 7, // zoom level at loading
     maxZoom: 0, // min zoom
     maxZoom: 16 // max zoom
-  })
+  });
+
   var afterMap = new mapgl.Map({
     container: 'after', 
     hash: true, 
@@ -116,15 +117,17 @@ const tell = () => {
     zoom: 7, // zoom level at loading
     maxZoom: 0, // min zoom
     maxZoom: 16 // max zoom
-  })
+  });
 
-  var container = "#comparison-container"
+  var container4c = "#comparison-container"
 
 
-  var map = new maplibregl.Compare(beforeMap, afterMap, container, {
+  var map = new maplibregl.Compare(beforeMap, afterMap, container4c, {
     // Set this to enable comparing two maps by mouse movement:
     // m ousemove: true
   });
+
+
 ////////////////////////////////////
 // Edit 2022-02-13 (until here)  ///
 ////////////////////////////////////
@@ -134,6 +137,7 @@ const tell = () => {
   let features = document.createElement('div')
   features.setAttribute('id', 'features')
   let header = document.createElement('div')
+//  let body = document.createElement('div')
 
   if (config.title) {
     let t = document.createElement('h1')
